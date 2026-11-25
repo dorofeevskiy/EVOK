@@ -1,0 +1,154 @@
+.price-comparison {
+  display: grid;
+  align-content: center;
+  gap: clamp(23px, 4svh, 47px);
+}
+
+.price-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.price-heading h2 {
+  margin: 0;
+  font-size: clamp(37px, min(5.15vw, 9.5svh), 80px);
+  line-height: 1.02;
+  letter-spacing: -.04em;
+}
+
+.price-heading p {
+  max-width: 48ch;
+  margin: 12px 0 0;
+  font-size: clamp(13px, 1.2vw, 18px);
+  line-height: 1.54;
+}
+
+.price-controls:not([hidden]) { display: flex; gap: 7px; }
+
+.price-arrow, .price-expand {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+}
+
+.price-arrow svg, .price-expand svg { width: 20px; height: 20px; }
+.price-arrow[data-direction="-1"] svg { transform: rotate(180deg); }
+.price-arrow:disabled { opacity: .44; cursor: default; }
+.price-expand svg { transform: rotate(-45deg); }
+
+.price-gallery {
+  --price-gap: clamp(11px, 1.5vw, 23px);
+  --price-peek: clamp(62px, 8vw, 132px);
+  --price-card-width: calc((100% - 3 * var(--price-gap) - var(--price-peek)) / 3);
+  display: flex;
+  gap: var(--price-gap);
+  min-width: 0;
+  margin: 0;
+  padding: 3px 0 clamp(11px, 2svh, 19px);
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x mandatory;
+}
+
+.price-gallery[data-ready] { scrollbar-width: none; }
+.price-gallery:focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
+
+.price-card {
+  --glass-corner: clamp(21px, 2.2vw, 34px);
+  --glass-fill: linear-gradient(145deg, rgba(255, 255, 255, .88), rgba(250, 252, 252, .44));
+  flex: 0 0 var(--price-card-width);
+  min-width: 0;
+  padding: 6px;
+  background: rgba(250, 252, 251, .44);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9), 0 4px 12px rgba(28, 48, 43, .07);
+  scroll-snap-align: start;
+}
+
+.price-card .price-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 47svh;
+  aspect-ratio: 1.22;
+  border-radius: calc(var(--glass-corner) - 6px);
+  object-fit: cover;
+}
+
+.price-card-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "title title" "values expand";
+  align-items: end;
+  gap: 11px 10px;
+  padding: clamp(12px, 1.3vw, 22px) clamp(8px, 1.1vw, 17px) clamp(10px, 1.15vw, 17px);
+}
+
+.price-card h3 {
+  grid-area: title;
+  margin: 0;
+  font-size: clamp(24px, 2.2vw, 36px);
+  line-height: 1.02;
+  letter-spacing: -.025em;
+}
+
+.price-values {
+  grid-area: values;
+  display: grid;
+  grid-template-columns: minmax(0, 1.06fr) minmax(0, 1fr);
+  align-items: end;
+  gap: clamp(7px, 1.1vw, 16px);
+  margin: 0;
+}
+
+.price-values dt {
+  margin-bottom: 5px;
+  font-size: clamp(10px, .92vw, 13px);
+  line-height: 1.2;
+}
+
+.price-values dd {
+  margin: 0;
+  color: var(--heading-ink);
+  font: 400 clamp(17px, 1.85vw, 29px) / 1 var(--heading-font);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.price-values div + div dd { color: var(--teal); }
+.price-expand { grid-area: expand; }
+
+.price-progress {
+  height: 4px;
+  margin-top: calc(-1 * clamp(15px, 2.55svh, 32px));
+  overflow: hidden;
+  border-radius: 20px;
+  background: rgba(36, 85, 79, .13);
+}
+
+.price-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--teal);
+}
+
+.price-viewer .project-viewer-photo img { width: min(92vw, 105svh, 700px); }
+
+@media (max-width: 1000px) {
+  .price-gallery { --price-card-width: calc((100% - 2 * var(--price-gap) - var(--price-peek)) / 2); }
+}
+
+@media (max-width: 640px) {
+  .price-heading { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+  .price-heading p { margin-top: 9px; }
+  .price-heading h2 { font-size: clamp(32px, 8.8vw, 48px); }
+  .price-gallery { --price-card-width: calc(100% - var(--price-gap) - clamp(27px, 9vw, 60px)); }
+  .price-card .price-photo { max-height: max(162px, 43svh); }
+  .price-values dd { font-size: clamp(18px, 5.6vw, 27px); }
+  .price-controls { grid-column: 2; grid-row: 1; }
+}

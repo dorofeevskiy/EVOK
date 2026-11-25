@@ -1,0 +1,233 @@
+.why-us, .why-us * { box-sizing: border-box; }
+
+.why-us {
+  --why-action-gap: 36.5px;
+  --why-tree-inset: 3px;
+  width: 100%;
+  max-width: 1804px;
+  margin: var(--evok-section-gap) auto 0;
+  padding: clamp(31px, 4.3vw, 74px) clamp(18px, 4.4vw, 82px) clamp(38px, 6vw, 92px);
+  display: grid;
+  align-content: center;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+  grid-template-areas: "intro stats" "house house";
+  column-gap: clamp(32px, 6.3vw, 112px);
+  color: #3d3c36;
+}
+
+.why-intro {
+  grid-area: intro;
+  display: grid;
+  grid-template-rows: auto auto minmax(var(--why-action-gap), 1fr) auto minmax(var(--why-action-gap), 1fr);
+}
+
+.why-intro h2 {
+  margin: 0 0 19px;
+  font-size: clamp(36px, 4.55vw, 76px);
+  letter-spacing: -.045em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.why-intro p {
+  max-width: 58ch;
+  margin: 0;
+  font-size: clamp(13px, 1.14vw, 18px);
+  line-height: 1.68;
+}
+
+.why-actions {
+  grid-row: 4;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  /* Account for the transparent pixels above the left tree. */
+  margin-block-start: var(--why-tree-inset);
+}
+
+.why-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 23px;
+  min-height: 48px;
+  padding-inline: 19px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.why-link svg { width: 17px; height: 17px; }
+
+.room-stats { grid-area: stats; z-index: 1; align-self: start; }
+
+.room-stats-heading {
+  margin: 1px 0 12px;
+}
+
+.room-stats-heading h3 {
+  margin: 0;
+  font-size: clamp(23px, 2.25vw, 36px);
+  line-height: 1.08;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 3px;
+}
+
+.stat dt {
+  min-block-size: 2.7em;
+  font-size: clamp(11px, 1.05vw, 15px);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.stat dd {
+  margin: 0;
+  color: var(--heading-ink);
+  font-family: var(--heading-font);
+  font-size: clamp(32px, 4.3vw, 68px);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.018em;
+}
+
+.stat-value { display: inline-flex; align-items: center; height: 1.14em; white-space: nowrap; }
+
+.digit-window {
+  display: inline-block;
+  width: .57em;
+  height: 1.14em;
+  overflow: hidden;
+  text-align: center;
+}
+
+.digit-reel, .digit-reel > span {
+  display: block;
+  height: 1.14em;
+  line-height: 1.14em;
+}
+
+.digit-separator { width: .20em; }
+
+.house-stage { grid-area: house; min-inline-size: 0; }
+
+.house {
+  position: relative;
+  isolation: isolate;
+  inline-size: 100%;
+  aspect-ratio: 2.5;
+}
+
+.house-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  border-end-start-radius: clamp(14px, 2vw, 32px);
+  border-end-end-radius: clamp(14px, 2vw, 32px);
+}
+
+.house-room {
+  position: absolute;
+  z-index: 1;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.house-room:disabled { cursor: default; }
+
+.house-room[aria-pressed="true"], .house-room:focus-visible {
+  border-color: rgba(255,237,206,.85);
+  box-shadow: inset 0 0 26px rgba(255,225,173,.25);
+  background: rgba(255,218,165,.065);
+}
+
+.house-room:focus-visible { outline: 2px solid #ffebc7; outline-offset: 2px; }
+
+.room-bathroom, .room-living { left: 13.9%; right: 56.8%; }
+.room-bedroom, .room-kitchen { left: 53.5%; right: 14.4%; }
+.room-bathroom { top: 36.4%; bottom: 46.2%; }
+.room-bedroom { top: 17.6%; bottom: 46.2%; }
+.room-living, .room-kitchen { top: 58.8%; bottom: 11.5%; }
+
+@media (max-width: 1160px) {
+  .why-us { padding-inline: 24px; }
+}
+
+@media (max-width: 760px) {
+  .why-us {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "intro" "house" "stats";
+    padding: 28px 12px 42px;
+  }
+  .why-intro { padding-inline: 7px; }
+  .why-intro h2 { margin-bottom: 11px; text-wrap: initial; }
+  .why-intro p { font-size: 13px; line-height: 1.62; }
+  .why-link { min-height: 44px; }
+  .house { min-height: 136px; }
+  .room-stats { margin-block-start: 17px; padding-inline: 2px; }
+  .room-stats-heading { padding-inline: 4px; margin-bottom: 9px; }
+  .stats-grid { gap: 8px; }
+  .stat { padding-inline: 4px; }
+}
+
+@media (max-width: 450px) {
+  .why-intro h2 { font-size: clamp(30px, 8.5vw, 38px); }
+}
+
+@media (min-width: 761px) {
+  .why-us {
+    --why-action-gap: clamp(24px, calc(19.5px + 1.425svh), 37px);
+    --why-tree-inset: 6px;
+    padding-block: clamp(15px, 2.7svh, 36px);
+  }
+
+  .why-intro h2 {
+    margin-bottom: clamp(8px, 1.65svh, 19px);
+    font-size: clamp(34px, min(4.45vw, 7svh), 74px);
+  }
+
+  .why-intro p {
+    max-width: 66ch;
+    font-size: clamp(13px, min(1.12vw, 2.15svh), 18px);
+    line-height: 1.53;
+  }
+
+  .why-link {
+    min-height: 44px;
+  }
+
+  .room-stats-heading { margin-bottom: clamp(7px, 1.3svh, 12px); }
+  .stats-grid { gap: clamp(8px, 1.45svh, 12px); }
+
+  .stat dd { font-size: clamp(30px, min(4.3vw, 6.15svh), 63px); }
+
+  .house-stage { container-type: inline-size; }
+
+  .house {
+    block-size: min(22.47cqw, 45svh);
+    aspect-ratio: auto;
+  }
+}
+
+@media (min-width: 761px) and (max-height: 570px) {
+  .why-intro h2 { font-size: clamp(32px, min(3.75vw, 6.6svh), 52px); }
+  .why-intro p { font-size: 13px; line-height: 1.42; }
+  .room-stats-heading h3 { font-size: clamp(23px, 4.75svh, 30px); }
+}

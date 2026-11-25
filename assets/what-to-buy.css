@@ -1,0 +1,208 @@
+.buy-section {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: auto minmax(280px, 1fr);
+  width: 100%;
+  max-width: 1804px;
+  margin-inline: auto;
+  margin-block-start: var(--evok-section-gap);
+  padding: clamp(28px, 4.7svh, 64px) var(--evok-page-gutter) clamp(38px, 6svh, 84px);
+  color: #3d3c36;
+}
+
+.buy-intro {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(24px, 6vw, 104px);
+  margin-bottom: clamp(24px, 4.2svh, 48px);
+}
+
+.buy-intro h2 {
+  max-width: 13ch;
+  margin: 0;
+  font-size: clamp(35px, 4.4vw, 72px);
+  line-height: .99;
+  letter-spacing: -.038em;
+  text-wrap: balance;
+}
+
+.buy-intro p {
+  max-width: 58ch;
+  margin: .12em 0 0;
+  font-size: clamp(13px, 1.13vw, 18px);
+  line-height: 1.62;
+}
+
+.buy-grid {
+  --buy-gap: clamp(12px, 1.45vw, 24px);
+  --buy-circle: min(37cqw, 82cqh, 510px);
+  --buy-arc: calc(var(--buy-circle) / 2 + var(--buy-gap) * .68);
+  --buy-material-center: calc((var(--buy-circle) - 100cqh - var(--buy-gap)) / 2);
+  container-type: size;
+  display: grid;
+  grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  grid-template-areas: "bath light" "bath materials";
+  gap: var(--buy-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.buy-card {
+  --glass-corner: clamp(22px, 2.35vw, 39px);
+  --glass-fill: linear-gradient(143deg, rgba(255,255,255,.34), rgba(255,255,255,.13) 55%, rgba(255,255,255,.05));
+  isolation: isolate;
+  overflow: hidden;
+  min-width: 0;
+  padding: clamp(19px, 2.4vw, 37px);
+}
+
+.buy-card h3 {
+  z-index: 1;
+  margin: 0;
+  font-size: clamp(24px, 2.75vw, 46px);
+  line-height: 1.06;
+  letter-spacing: -.034em;
+}
+
+.buy-card-bathroom {
+  grid-area: bath;
+  background: #c5af91;
+}
+
+.buy-card .buy-photo {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 61%;
+}
+
+.buy-card-bathroom::before {
+  background: radial-gradient(ellipse 87% 74% at 1% 0%, rgba(253,244,228,.75), rgba(253,244,228,.21) 55%, transparent 95%);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.buy-card:not(.buy-card-bathroom) {
+  padding: clamp(14px, 1.65vw, 28px);
+}
+
+.buy-card:not(.buy-card-bathroom) h3 {
+  font-size: clamp(22px, 2.22vw, 38px);
+}
+
+.buy-card:not(.buy-card-bathroom)::before {
+  -webkit-mask-image: linear-gradient(110deg, #000 0%, rgba(0,0,0,.5) 29%, transparent 65%);
+  mask-image: linear-gradient(110deg, #000 0%, rgba(0,0,0,.5) 29%, transparent 65%);
+}
+
+.buy-card-tableware .buy-photo { object-position: 65% 57%; }
+.buy-card-light .buy-photo { object-position: 92% 47%; }
+.buy-card-materials .buy-photo { object-position: 72% 53%; }
+
+.buy-card-tableware {
+  --glass-corner: 50%;
+  grid-column: 2;
+  grid-row: 1 / -1;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 115% 100% at 105% 105%, rgba(232,255,240,.62) 0 19%, rgba(225,249,235,.13) 36%, transparent 63%),
+    radial-gradient(ellipse 85% 74% at 84% 85%, transparent 48%, rgba(240,255,247,.50) 49%, rgba(240,255,247,.08) 52%, transparent 67%),
+    linear-gradient(143deg, #e8ead7 0%, #b6d0be 48%, #7ca99c 100%);
+}
+
+.buy-card.buy-card-tableware {
+  aspect-ratio: 1;
+  inline-size: var(--buy-circle);
+  align-self: start;
+  justify-self: end;
+  display: grid;
+  place-items: start center;
+  padding: clamp(21px, 11cqh, 55px) 0 0;
+}
+
+.buy-card.buy-card-tableware::before {
+  background: linear-gradient(180deg, rgba(251, 250, 241, .86), rgba(251, 250, 241, .22) 42%, transparent 63%);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.buy-card-light {
+  grid-area: light;
+  margin-inline-end: calc(var(--buy-circle) * .72);
+  -webkit-mask-image: radial-gradient(circle var(--buy-arc) at calc(100% + var(--buy-circle) * .22) calc(var(--buy-circle) / 2), transparent calc(100% - 1px), #000);
+  mask-image: radial-gradient(circle var(--buy-arc) at calc(100% + var(--buy-circle) * .22) calc(var(--buy-circle) / 2), transparent calc(100% - 1px), #000);
+  background:
+    radial-gradient(ellipse 110% 76% at 83% 91%, #ffe6af 5%, rgba(255,205,143,.82) 20%, rgba(248,192,136,.24) 50%, transparent 76%),
+    radial-gradient(ellipse 110% 95% at 100% 62%, rgba(255,238,200,.50), transparent 62%),
+    linear-gradient(146deg, #f2e2c4 3%, #edc69e 45%, #bb8a70 100%);
+}
+
+.buy-card-materials {
+  grid-area: materials;
+  display: flex;
+  align-items: end;
+  -webkit-mask-image: radial-gradient(circle var(--buy-arc) at calc(100% - var(--buy-circle) / 2) var(--buy-material-center), transparent calc(100% - 1px), #000);
+  mask-image: radial-gradient(circle var(--buy-arc) at calc(100% - var(--buy-circle) / 2) var(--buy-material-center), transparent calc(100% - 1px), #000);
+  background:
+    radial-gradient(ellipse 66% 430% at 89% 170%, rgba(246,239,215,.88), transparent 64%),
+    linear-gradient(151deg, transparent 56%, rgba(255,249,234,.38) 56.2%, transparent 71%),
+    linear-gradient(112deg, #e9dfcc 1%, #d6c9b4 49%, #a7b6a7 100%);
+}
+
+.buy-card-materials h3 { max-inline-size: 16ch; }
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .buy-card.glass { transition: scale .28s ease, box-shadow .28s ease; }
+  .buy-card .buy-photo { transition: scale .32s ease; }
+  .buy-card:hover { scale: 1.014; }
+  .buy-card:hover .buy-photo { scale: 1.025; }
+}
+
+@supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .buy-card:not(.buy-card-bathroom)::before { background: var(--glass-fill); }
+}
+
+@media (max-width: 760px) {
+  .buy-section { grid-template-rows: auto minmax(465px, 1fr); }
+  .buy-intro {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 13px;
+    margin-bottom: 24px;
+    padding-inline: 7px;
+  }
+
+  .buy-intro h2 { max-width: none; text-wrap: initial; }
+
+  .buy-grid {
+    --buy-circle: min(59cqw, calc((54cqh - var(--buy-gap)) * .88), 310px);
+    --buy-material-center: calc(var(--buy-circle) / 2 - 27cqh);
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 46% repeat(2, minmax(0, 1fr));
+    grid-template-areas: "bath" "light" "materials";
+  }
+
+  .buy-card-tableware { grid-column: 1; grid-row: 2 / 4; }
+  .buy-card.buy-card-tableware { padding-block-start: clamp(20px, 5cqh, 43px); }
+  .buy-card-materials h3 { max-inline-size: min(16ch, 66%); }
+  .buy-card:not(.buy-card-tableware) { --glass-corner: 23px; }
+}
+
+@media (max-width: 420px) {
+  .buy-intro h2 { font-size: clamp(29px, 8.1vw, 35px); }
+  .buy-card { padding-inline: 15px; }
+}
+
+@media (min-width: 761px) and (max-height: 740px) {
+  .buy-section { padding-block: clamp(18px, 3.6svh, 29px) clamp(24px, 4svh, 38px); }
+  .buy-intro { margin-bottom: clamp(16px, 3svh, 24px); }
+  .buy-intro h2 { font-size: clamp(33px, min(4.4vw, 7.15svh), 60px); }
+}

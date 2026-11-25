@@ -1,0 +1,311 @@
+html {
+  --evok-page-gutter: clamp(18px, 4.4vw, 82px);
+  --evok-page-inset: clamp(16px, 2.2vw, 38px);
+  --evok-header-height: 76px;
+  --evok-header-gap: clamp(13px, 1.25vw, 20px);
+  --evok-section-gap: clamp(40px, 6.5svh, 92px);
+  --teal: #24554f;
+  --white: #f4ffff;
+  scroll-padding-top: 16px;
+}
+
+body {
+  margin: 0;
+  background: #ecf0f0;
+}
+
+main > section { min-block-size: 100svh; }
+
+.icon-library {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+:is(.evok-header-frame, .evok-first-screen) {
+  color: #172824;
+  padding-inline: var(--evok-page-gutter);
+}
+
+.evok-header-frame {
+  position: relative;
+  z-index: 10;
+  padding-block: var(--evok-page-inset) var(--evok-header-gap);
+}
+
+.evok-first-screen {
+  background: #ecf0f0;
+  padding-bottom: var(--evok-page-inset);
+}
+
+:is(.evok-header-frame, .evok-first-screen) * { box-sizing: border-box; }
+:is(.evok-header-frame, .evok-first-screen) a:not(.evok-button) { color: inherit; text-decoration: none; }
+:is(.evok-header-frame, .evok-first-screen) :focus-visible { outline: 2px solid #17675d; outline-offset: 4px; }
+:is(.evok-header-frame, .evok-first-screen) svg { display: block; width: 20px; height: 20px; }
+:is(.evok-header-frame, .evok-first-screen) [hidden] { display: none; }
+
+.evok-header {
+  --glass-fill: linear-gradient(142deg, rgba(255,255,255,.67), rgba(249,253,252,.30) 26%, rgba(206,220,218,.32) 66%, rgba(255,255,255,.52));
+  max-width: 1640px;
+  min-height: var(--evok-header-height);
+  margin: 0 auto;
+  padding: 9px 13px 9px 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.evok-logo { display: block; flex: none; }
+.evok-logo img { display: block; width: 117px; height: auto; }
+
+.evok-nav {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 2.35vw, 36px);
+  padding-left: min(4.8vw, 78px);
+}
+
+.menu-surface { display: none; }
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  white-space: nowrap;
+  font-size: clamp(13px, 1.08vw, 16px);
+}
+
+.nav-link:hover { color: var(--teal); text-decoration: underline; text-underline-offset: 5px; }
+.nav-link-current { font-weight: 600; color: var(--teal); }
+
+.evok-button {
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: 99px;
+  background: var(--teal);
+  color: var(--white);
+  font-family: var(--text-font);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.evok-button:hover:where(:not(:disabled, [aria-disabled="true"])) { background: #193f3a; }
+.evok-button:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+.evok-nav .nav-contact, .evok-contacts .callback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  min-height: 46px;
+  padding: 0 21px;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.evok-nav .nav-contact { margin-left: auto; padding: 0 15px 0 18px; }
+.nav-contact svg, .callback svg { width: 16px; height: 16px; }
+
+.evok-header .menu-toggle { display: none; }
+
+.evok-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  max-width: 1640px;
+  min-block-size: calc(100svh - var(--evok-header-height) - var(--evok-header-gap) - 2 * var(--evok-page-inset));
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(70px, 18svh, 230px);
+  padding: clamp(42px, 5.1vw, 85px) clamp(17px, 1.9vw, 30px) clamp(17px, 1.9vw, 30px);
+  border-radius: clamp(25px, 2.7vw, 42px);
+  background: #c5b59e url("./hero-interior.webp") center center / cover no-repeat;
+}
+
+.hero-video, .evok-hero::after {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero-video {
+  z-index: -2;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.evok-hero::after {
+  content: "";
+  z-index: -1;
+  background: radial-gradient(ellipse 77% 69% at 0% 0%, rgba(255,251,241,.90), rgba(255,251,241,.65) 47%, rgba(255,251,241,0) 100%);
+}
+
+.hero-copy { margin-left: clamp(16px, 2.55vw, 44px); }
+
+.hero-kicker {
+  margin: 0 0 12px;
+  color: #263e38;
+  font-size: clamp(18px, 1.78vw, 28px);
+  line-height: 1.2;
+}
+
+.hero-copy h1 {
+  margin: 0;
+  font-size: clamp(64px, 6.45vw, 115px);
+  line-height: .96;
+  letter-spacing: -.045em;
+}
+
+.video-toggle {
+  position: absolute;
+  z-index: 1;
+  inset: 16px 17px auto auto;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+}
+
+.video-toggle svg { width: 17px; height: 17px; }
+
+.evok-contacts {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 22px;
+  min-height: 88px;
+  padding: 12px 13px 12px 22px;
+}
+
+.phone-links, .contact-actions, .social-links { display: flex; align-items: center; }
+.phone-links { gap: clamp(16px, 2.5vw, 38px); }
+
+.phone-link { display: flex; align-items: center; gap: 11px; }
+.phone-link + .phone-link { padding-left: clamp(16px, 2.5vw, 38px); border-left: 1px solid rgba(31,59,51,.20); }
+.phone-link:hover .phone-number { text-decoration: underline; text-underline-offset: 3px; }
+.phone-text { display: grid; white-space: nowrap; gap: 2px; }
+.phone-label { color: #30443e; font-size: 14px; line-height: 1.1; }
+.phone-number { font-size: clamp(16px, 1.55vw, 23px); font-weight: 400; line-height: 1.14; letter-spacing: -.015em; }
+
+.phone-icon, .social-button {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.40);
+  background: rgba(248,255,251,.48);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.21);
+  color: #1e3e37;
+}
+
+.phone-icon svg { width: 18px; height: 18px; }
+.contact-actions { gap: clamp(12px, 2vw, 29px); }
+.social-links { gap: 7px; }
+.social-button svg { width: 19px; height: 19px; }
+.evok-contacts .callback { min-height: 52px; padding: 0 22px; }
+
+@media (max-width: 1160px) {
+  .evok-nav { padding-left: 0; }
+  html { --evok-page-gutter: 24px; }
+  .phone-links, .contact-actions { gap: 13px; }
+  .phone-link + .phone-link { padding-left: 13px; }
+  .phone-icon, .social-button { width: 36px; height: 36px; }
+}
+
+@media (max-width: 1050px) {
+  html { --evok-header-height: 68px; }
+  .evok-header { justify-content: space-between; flex-wrap: wrap; padding: 8px 12px 8px 19px; }
+  .evok-logo img { width: 105px; }
+  .has-menu-toggle .menu-toggle { display: grid; }
+  .menu-toggle {
+    place-items: center;
+    padding: 0;
+    width: 44px;
+    height: 44px;
+  }
+  .evok-nav {
+    flex: 0 0 100%;
+    flex-wrap: wrap;
+    padding: 0 0 8px;
+    justify-content: flex-start;
+    gap: 0 18px;
+  }
+  .has-menu-toggle .evok-nav {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    display: grid;
+    padding: 8px;
+    isolation: isolate;
+  }
+  .has-menu-toggle .menu-surface {
+    --glass-corner: 23px;
+    --glass-fill: linear-gradient(142deg, rgba(255,255,255,.84), rgba(244,249,248,.64) 58%, rgba(255,255,255,.73));
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    display: block;
+    pointer-events: none;
+  }
+  .menu-toggle[aria-expanded="false"] + .evok-nav { display: none; }
+  .evok-nav .nav-link { display: flex; padding: 0 13px; font-size: 16px; }
+  .evok-nav .nav-contact { min-height: 43px; margin: 3px 0 0; justify-content: space-between; }
+  .hero-copy h1 { font-size: clamp(56px, 9.2vw, 86px); }
+}
+
+@media (max-width: 710px) {
+  html { --evok-page-inset: 12px; --evok-page-gutter: 12px; }
+  .evok-hero { padding: 56px 12px 12px; }
+  .hero-copy { margin-left: clamp(7px, 2.9vw, 24px); }
+  .hero-kicker { margin-bottom: 11px; font-size: clamp(15px, 3.9vw, 22px); }
+  .hero-copy h1 { font-size: clamp(40px, 10.4vw, 68px); }
+  .hero-video { object-position: 54% center; }
+  .evok-hero::after {
+    background: linear-gradient(180deg, rgba(255,251,241,.87), rgba(255,251,241,.55) 24%, rgba(255,251,241,0) 55%);
+  }
+  .evok-contacts {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 11px;
+    --glass-fill: linear-gradient(142deg, rgba(255,255,255,.59), rgba(246,251,249,.40) 58%, rgba(255,255,255,.50));
+  }
+  .phone-links { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .phone-link { gap: 6px; min-height: 44px; }
+  .phone-link + .phone-link { padding-left: 8px; }
+  .phone-number { font-size: clamp(11px, 3.08vw, 17px); }
+  .phone-label { font-size: 12px; }
+  .phone-icon { width: 28px; height: 28px; }
+  .phone-icon svg { width: 15px; height: 15px; }
+  .contact-actions { justify-content: space-between; gap: 9px; padding-top: 9px; border-top: 1px solid rgba(31,59,51,.16); }
+  .social-links { gap: 5px; }
+  .social-button { width: clamp(29px, 8.25vw, 40px); height: clamp(29px, 8.25vw, 40px); }
+  .social-button svg { width: 17px; height: 17px; }
+  .evok-contacts .callback { min-height: 44px; padding: 0 12px; font-size: 12px; gap: 5px; }
+  .video-toggle { inset: 11px 11px auto auto; width: 40px; height: 40px; }
+}
+
+@media (max-width: 365px) {
+  .phone-icon, .callback svg { display: none; }
+  .contact-actions { gap: 6px; }
+  .social-links { gap: 4px; }
+  .social-button { width: 26px; height: 26px; }
+  .evok-contacts .callback { padding: 0 8px; font-size: 11px; }
+  .hero-copy h1 { font-size: max(32px, 10.6vw); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.evok-header-frame, .evok-first-screen) * { transition: none; }
+}

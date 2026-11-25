@@ -1,0 +1,38 @@
+@font-face {
+  font-family: Leksa;
+  src: url("./LeksaSans.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url("./montserrat.woff") format("woff");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --heading-ink: #332419;
+  --heading-font: Leksa, Arial, sans-serif;
+  --text-font: Montserrat, Arial, sans-serif;
+}
+
+body { font-family: var(--text-font); }
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-ink);
+  font-family: var(--heading-font);
+  font-weight: 400;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}

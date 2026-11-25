@@ -1,0 +1,62 @@
+/* Shared liquid glass for menus, panels and text cards. */
+.glass {
+  position: relative;
+  box-sizing: border-box;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: var(--glass-corner, 30px);
+  box-shadow: 0 18px 42px rgba(22,48,42,.13), 0 3px 9px rgba(22,48,42,.045), inset 0 1px 0 rgba(255,255,255,.36), inset 0 -1px 0 rgba(38,69,61,.07);
+}
+
+.glass::before, .glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.glass::before {
+  background:
+    radial-gradient(ellipse 78% 52% at 7% -9%, rgba(255,255,255,.38), rgba(255,255,255,.12) 40%, transparent 80%),
+    linear-gradient(155deg, rgba(255,255,255,.09), transparent 48%, rgba(255,255,255,.04)),
+    var(--glass-fill, linear-gradient(142deg, rgba(255,255,255,.46), rgba(255,255,255,.32) 25%, rgba(246,251,249,.23) 58%, rgba(255,255,255,.36)));
+  -webkit-backdrop-filter: blur(22px) saturate(128%) brightness(1.07);
+  backdrop-filter: blur(22px) saturate(128%) brightness(1.07);
+}
+
+.glass::after {
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, rgba(255,255,255,.62), rgba(255,255,255,.28) 19%, rgba(255,255,255,.06) 44%, transparent 67%, rgba(38,72,63,.12) 88%, rgba(255,255,255,.18)) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.glass > * { position: relative; }
+
+@media (hover: hover) and (min-width: 641px) and (prefers-reduced-motion: no-preference) {
+  .glass { transition: box-shadow .35s ease; }
+  .glass:hover {
+    box-shadow: 0 22px 48px rgba(22,48,42,.15), 0 4px 12px rgba(22,48,42,.06), inset 0 1px 0 rgba(255,255,255,.40), inset 0 -1px 0 rgba(38,69,61,.07);
+  }
+}
+
+@media (max-width: 710px) {
+  .glass { border-radius: var(--glass-corner, 24px); }
+}
+
+@media (max-width: 640px) {
+  .glass {
+    box-shadow: 0 6px 16px rgba(24,53,47,.085), 0 1px 4px rgba(24,53,47,.035), inset 0 1px 0 rgba(255,255,255,.35), inset 0 -1px 0 rgba(38,69,61,.05);
+  }
+  .glass::before {
+    -webkit-backdrop-filter: blur(19px) saturate(125%) brightness(1.07);
+    backdrop-filter: blur(19px) saturate(125%) brightness(1.07);
+  }
+  .glass::after { opacity: .7; }
+}
+
+@supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .glass::before { background: rgba(242,248,245,.93); }
+}
